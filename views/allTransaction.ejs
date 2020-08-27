@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Account details</title>
+        <meta charset="utf-8">
+        <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div style="display: flex;">
+              <div  class="navbar-header">
+                <a style="color:white;" class="navbar-brand" href="/">Transaction Manage</a>
+              </div>
+              <div>
+                <button class="btn btn-success navbar-btn"><a href="/addDealer" style="color:white;"><span class="glyphicon glyphicon-plus"></span> Add dealer</a></button>
+              </div>
+            </div>
+            </div>
+          </nav>
+        <div class="container">
+            <% if(error && error.length>0){ %>
+            <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+            <% } %>
+            <% if(success && success.length>0){ %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+            <% } %>
+        </div>
+        <div style="display: flex;" class="container">
+            <h5 style="margin-left:14px;" class="card-title">Total amount: <%= total %></h5>
+        </div>
+
+        <% t.forEach((data) => { %>
+                <h5 style="margin-left:30px;" class="card-title"><span class="glyphicon glyphicon-calendar"></span>  <%= month[data._id] %></h5>
+                        <div class="card" style="width:30rem;margin-left:35px;box-shadow: 5px 10px 18px #888888;padding:10px;">
+                            <div class="card-body">
+                        <h5 class="card-title"><span class="glyphicon glyphicon-usd"></span>  <%= data.monthly %></h5>
+                        <% for(var i=0;i<data.detail.length;i++){ %>
+                            </div>
+                        </div>
+                            <div class="card" style="width:30rem;margin-left:35px;box-shadow: 5px 10px 18px #888888;padding:10px;">
+                                <div class="card-body">
+                          <h5 class="card-title"><span class="glyphicon glyphicon-user"></span>  <%= data.detail[i].name %></h5>
+                          <h5 class="card-title"><span class="glyphicon glyphicon-calendar"></span>  <%= data.detail[i].dt %></h5>
+                          <h5 class="card-title">Amount: <%= data.detail[i].a %></h5>
+                          <h5 class="card-title"><span class="glyphicon glyphicon-home"></span>  <%= data.detail[i].bank %></h5>
+                                </div>
+                            </div>
+                        <% } %>
+                        
+                        </div>
+                    </div>
+        <% }) %>
+
+
+    </body>
+</html>

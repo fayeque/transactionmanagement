@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Account details</title>
+        <meta charset="utf-8">
+        <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div style="display: flex;">
+              <div  class="navbar-header">
+                <a style="color:white;" class="navbar-brand" href="/">Transaction Manage</a>
+              </div>
+              <div>
+                <button class="btn btn-success navbar-btn"><a href="/addDealer" style="color:white;"><span class="glyphicon glyphicon-plus"></span> Add dealer</a></button>
+              </div>
+            </div>
+            </div>
+          </nav>
+        <div class="container">
+            <div class="innerWrapper">
+                <div class="header">
+                    <h5 style="margin-left:80px;">Add Transaction to <%= dealer.name %></h5>
+                </div>
+                <!-- <div class="total">
+                    <h3>Total:<span class="totalamount">0</span></h3>
+                </div> -->
+                <div class="input">
+                <form autocomplete="off" method="POST" action="/addTransaction/<%= dealer._id %>">
+                    <div style="margin-top:15px;" class="singleInput">
+                        Total:<input class="form-control totalamount" type="number" name="totalamount" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n2000" type="number" name="note_2000" placeholder="2000" onkeyup="myFunction(event)">
+                        <h5 class="note_2000"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_2000" type="hidden" name="q_2000" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n500" type="number" name="note_500" placeholder="500" onkeyup="myFunction(event)">
+                        <h5 class="note_500"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_500" type="hidden" name="q_500" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n200" type="number" name="note_200" placeholder="200" onkeyup="myFunction(event)">
+                        <h5 class="note_200"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_200" type="hidden" name="q_200" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n100" type="number" name="note_100" placeholder="100" onkeyup="myFunction(event)">
+                        <h5 class="note_100"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_100" type="hidden" name="q_100" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n50" type="number" name="note_50" placeholder="50" onkeyup="myFunction(event)">
+                        <h5 class="note_50"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_50" type="hidden" name="q_50" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n20" type="number" name="note_20" placeholder="20" onkeyup="myFunction(event)">
+                        <h5 class="note_20"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_20" type="hidden" name="q_20" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control n10" type="number" name="note_10" placeholder="10" onkeyup="myFunction(event)">
+                        <h5 class="note_10"></h5>
+                        <input style="margin-top: 10px;" class="form-control q_10" type="hidden" name="q_10" readonly>
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                        <input class="form-control from" type="text" name="from" placeholder="From">
+                    </div>
+                    <div style="margin-top:15px;" class="singleInput">
+                    <input class="btn btn-primary btn-block" type="submit">
+                    </div>
+                </form>
+                </div>
+            </div>
+
+            
+        </div>
+        <script>
+            var obj={};
+            
+            function myFunction(e){
+                var total=0;
+                obj[e.target.name]=parseInt(e.target.value) || 0;
+                var note=parseInt(e.target.name.split("_")[1]);
+                document.getElementsByClassName(e.target.name)[0].textContent=obj[e.target.name]*note;
+                document.querySelector(".q_2000").value=(parseInt(obj["note_2000"]) || 0)*2000;
+                document.querySelector(".q_500").value=(parseInt(obj["note_500"]) || 0)*500;
+                document.querySelector(".q_200").value=(parseInt(obj["note_200"]) || 0)*200;
+                document.querySelector(".q_100").value=(parseInt(obj["note_100"]) || 0)*100;
+                document.querySelector(".q_50").value=(parseInt(obj["note_50"]) || 0)*50;
+                document.querySelector(".q_20").value=(parseInt(obj["note_20"]) || 0)*20;
+                document.querySelector(".q_10").value=(parseInt(obj["note_10"]) || 0)*10;
+                for(let i in obj){
+                    console.log("i",i);
+                    var c=parseInt(i.split("_")[1]);
+                    console.log("c",c);
+                    console.log("obj[i]",obj[i])
+                    total=total+obj[i]*c;
+                }
+                document.querySelector(".totalamount").value=total;
+                console.log(total);
+                console.log(obj);
+            }
+        </script>
+
+    </body>
+</html>
